@@ -19,7 +19,6 @@ struct PokemonResults: Decodable {
     let url: String
 }
 
-
 struct Pokemon: Decodable {
     let id: Int
     let name: String
