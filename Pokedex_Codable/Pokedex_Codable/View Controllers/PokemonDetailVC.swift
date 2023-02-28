@@ -25,7 +25,7 @@ class PokemonDetailVC: UIViewController {
     
     
     //MARK: - PROPERTIES
-    
+    var pokemon: Pokemon?
     
     
     //MARK: - FUNCTIONS

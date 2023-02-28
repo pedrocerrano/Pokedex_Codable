@@ -81,7 +81,23 @@ class PokemonTableViewController: UITableViewController {
 
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-// "toPokemonDetailVC"
-// PokemonDetailVC
+        if segue.identifier == "toPokemonDetailVC" {
+            if let index = tableView.indexPathForSelectedRow {
+                if let destinationVC = segue.destination as? PokemonDetailVC {
+                    let pokemonToSend = pokedex[index.row]
+                    NetworkingController.fetchPokemon(with: pokemonToSend.url) { result in
+                        switch result {
+                        case .success(let pokemon):
+                            DispatchQueue.main.async {
+                                destinationVC.pokemon = pokemon
+                            }
+                            
+                        case .failure(let error):
+                            print(error.errorDescription ?? Constants.Error.unknownError)
+                        }
+                    }
+                }
+            }
+        }
     }
 } //: CLASS
