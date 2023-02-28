@@ -46,20 +46,37 @@ class PokemonTableViewController: UITableViewController {
     
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return topLevel?.results.count ?? 0
+        return pokedex.count
     }
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "pokedexCell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "pokedexCell", for: indexPath) as? PokemonTableViewCell else { return UITableViewCell() }
 
-        let pokemon                 = pokedex[indexPath.row]
-        var config                  = cell.defaultContentConfiguration()
-        config.text                 = pokemon.name
-        config.secondaryText        = pokemon.url
-        cell.contentConfiguration   = config
+        let pokemon = pokedex[indexPath.row]
+        cell.updateUI(forPokemon: pokemon)
 
         return cell
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        guard let topLevel = topLevel else { return }
+        
+        if indexPath.row == pokedex.count - 1 {
+            NetworkingController.fetchPokedex(with: topLevel.next) { result in
+                switch result {
+                case .success(let topLevel):
+                    self.topLevel = topLevel
+                    self.pokedex.append(contentsOf: topLevel.results)
+                    self.reloadTableViewOnMainThread()
+                    
+                case .failure(let error):
+                    print(error.errorDescription ?? Constants.Error.unknownError)
+                }
+            }
+        }
     }
 
 
