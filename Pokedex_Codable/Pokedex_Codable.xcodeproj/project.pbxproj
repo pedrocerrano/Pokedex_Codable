@@ -18,6 +18,7 @@
 		29545ADE29AE688800EAA877 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29545ADD29AE688800EAA877 /* NetworkError.swift */; };
 		29545AE029AE6DE900EAA877 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29545ADF29AE6DE900EAA877 /* Constants.swift */; };
 		29545AE229AE848100EAA877 /* PokemonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29545AE129AE848100EAA877 /* PokemonTableViewCell.swift */; };
+		29545AE529AE964900EAA877 /* PokemonDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29545AE429AE964900EAA877 /* PokemonDetailVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		29545ADD29AE688800EAA877 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		29545ADF29AE6DE900EAA877 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		29545AE129AE848100EAA877 /* PokemonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonTableViewCell.swift; sourceTree = "<group>"; };
+		29545AE429AE964900EAA877 /* PokemonDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,7 +109,8 @@
 			isa = PBXGroup;
 			children = (
 				29545AD829AE671200EAA877 /* PokemonTableViewController.swift */,
-				29545AE129AE848100EAA877 /* PokemonTableViewCell.swift */,
+				29545AE429AE964900EAA877 /* PokemonDetailVC.swift */,
+				29545AE329AE962800EAA877 /* Custom Views */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -120,6 +123,14 @@
 				29545ADF29AE6DE900EAA877 /* Constants.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		29545AE329AE962800EAA877 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				29545AE129AE848100EAA877 /* PokemonTableViewCell.swift */,
+			);
+			path = "Custom Views";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,6 +210,7 @@
 				29545AD929AE671200EAA877 /* PokemonTableViewController.swift in Sources */,
 				29545ADE29AE688800EAA877 /* NetworkError.swift in Sources */,
 				29545AE029AE6DE900EAA877 /* Constants.swift in Sources */,
+				29545AE529AE964900EAA877 /* PokemonDetailVC.swift in Sources */,
 				29545AC129AE626500EAA877 /* SceneDelegate.swift in Sources */,
 				29545ADC29AE67A900EAA877 /* NetworkingController.swift in Sources */,
 			);

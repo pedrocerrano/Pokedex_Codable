@@ -61,7 +61,6 @@ class PokemonTableViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
         guard let topLevel = topLevel else { return }
         
         if indexPath.row == pokedex.count - 1 {
@@ -82,6 +81,7 @@ class PokemonTableViewController: UITableViewController {
 
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
+// "toPokemonDetailVC"
+// PokemonDetailVC
     }
 } //: CLASS
