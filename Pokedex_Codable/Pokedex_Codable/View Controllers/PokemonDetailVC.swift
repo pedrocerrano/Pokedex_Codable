@@ -39,7 +39,7 @@ class PokemonDetailVC: UIViewController {
             switch result {
             case .success(let image):
                 DispatchQueue.main.async {
-                    self.pokemonNameLabel.text          = pokemon.name
+                    self.pokemonNameLabel.text          = pokemon.name.capitalized
                     self.pokemonIDLabel.text            = "\(pokemon.id)"
                     self.pokemonSpriteImageView.image   = image
                     self.pokemonMovesTableView.reloadData()
@@ -50,8 +50,6 @@ class PokemonDetailVC: UIViewController {
             }
         }
     }
-    
-    
 } //: CLASS
 
 
@@ -59,16 +57,17 @@ class PokemonDetailVC: UIViewController {
 extension PokemonDetailVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return pokemon?.moves.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "moveCell", for: indexPath)
+       
         
-        //        var config  = cell.defaultContentConfiguration()
-        //        let move    = pokemon?.moves[indexPath.row]
-        //        config.text = move
-        //        cell.contentConfiguration = config
+        var config  = cell.defaultContentConfiguration()
+        let move    = pokemon?.moves[indexPath.row].move
+        config.text = move?.name.capitalized
+        cell.contentConfiguration = config
         
         return cell
     }
