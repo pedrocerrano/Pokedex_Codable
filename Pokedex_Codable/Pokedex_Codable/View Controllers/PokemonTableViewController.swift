@@ -23,12 +23,12 @@ class PokemonTableViewController: UITableViewController {
     
     //MARK: - FUNCTIONS
     func fetchPokedex() {
-        NetworkingController.fetchPokedex(with: Constants.Pokemon.fetchPokedexURL) { result in
+        NetworkingController.fetchPokedex(with: Constants.Pokemon.fetchPokedexURL) { [weak self] result in
             switch result {
             case .success(let topLevel):
-                self.topLevel = topLevel
-                self.pokedex  = topLevel.results
-                self.reloadTableViewOnMainThread()
+                self?.topLevel = topLevel
+                self?.pokedex  = topLevel.results
+                self?.reloadTableViewOnMainThread()
                 
             case .failure(let error):
                 print(error.errorDescription ?? Constants.Error.unknownError)
@@ -65,12 +65,12 @@ class PokemonTableViewController: UITableViewController {
         guard let topLevel = topLevel else { return }
         
         if indexPath.row == pokedex.count - 1 {
-            NetworkingController.fetchPokedex(with: topLevel.next) { result in
+            NetworkingController.fetchPokedex(with: topLevel.next) { [weak self] result in
                 switch result {
                 case .success(let topLevel):
-                    self.topLevel = topLevel
-                    self.pokedex.append(contentsOf: topLevel.results)
-                    self.reloadTableViewOnMainThread()
+                    self?.topLevel = topLevel
+                    self?.pokedex.append(contentsOf: topLevel.results)
+                    self?.reloadTableViewOnMainThread()
                     
                 case .failure(let error):
                     print(error.errorDescription ?? Constants.Error.unknownError)

@@ -18,17 +18,17 @@ class PokemonTableViewCell: UITableViewCell {
     //MARK: - FUNCTIONS
     override func prepareForReuse() {
         super.prepareForReuse()
-        pokemonNameLabel.text = nil
-        pokemonIDLabel.text = nil
+        pokemonNameLabel.text        = nil
+        pokemonIDLabel.text          = nil
         pokemonSpriteImageView.image = nil
     }
     
     
     func updateUI(forPokemon pokemon: PokemonResults) {
-        NetworkingController.fetchPokemon(with: pokemon.url) { result in
+        NetworkingController.fetchPokemon(with: pokemon.url) { [weak self] result in
             switch result {
             case .success(let pokemon):
-                self.fetchSprite(forPokemon: pokemon)
+                self?.fetchSprite(forPokemon: pokemon)
                 
             case .failure(let error):
                 print(error.errorDescription ?? Constants.Error.unknownError)
@@ -38,13 +38,13 @@ class PokemonTableViewCell: UITableViewCell {
     
     
     func fetchSprite(forPokemon pokemon: Pokemon) {
-        NetworkingController.fetchSprite(for: pokemon.sprites.frontShiny) { result in
+        NetworkingController.fetchSprite(for: pokemon.sprites.frontShiny) { [weak self] result in
             switch result {
             case .success(let sprite):
                 DispatchQueue.main.async {
-                    self.pokemonNameLabel.text  = pokemon.name.capitalized
-                    self.pokemonIDLabel.text    = "No. \(pokemon.id)"
-                    self.pokemonSpriteImageView.image = sprite
+                    self?.pokemonNameLabel.text  = pokemon.name.capitalized
+                    self?.pokemonIDLabel.text    = "No. \(pokemon.id)"
+                    self?.pokemonSpriteImageView.image = sprite
                 }
                 
             case .failure(let error):
