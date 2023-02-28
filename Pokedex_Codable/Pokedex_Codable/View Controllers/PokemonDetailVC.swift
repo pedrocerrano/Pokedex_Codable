@@ -62,7 +62,6 @@ extension PokemonDetailVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "moveCell", for: indexPath)
-       
         
         var config  = cell.defaultContentConfiguration()
         let move    = pokemon?.moves[indexPath.row].move
