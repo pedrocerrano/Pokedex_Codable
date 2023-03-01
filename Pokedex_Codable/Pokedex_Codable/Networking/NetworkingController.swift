@@ -11,6 +11,7 @@ class NetworkingController {
     
     static func fetchPokedex(with url: String, completion: @escaping (Result<TopLevel, NetworkError>) -> Void) {
         guard let finalURL = URL(string: url) else { completion(.failure(.invalidURL)) ; return }
+        print("fetchPokedex Final URL: \(finalURL)")
         
         URLSession.shared.dataTask(with: finalURL) { data, response, error in
             if let error = error {
@@ -34,6 +35,7 @@ class NetworkingController {
     
     static func fetchPokemon(with url: String, completion: @escaping (Result<Pokemon, NetworkError>) -> Void) {
         guard let finalURL = URL(string: url) else { completion(.failure(.invalidURL)) ; return }
+        print("fetchPokemon Final URL: \(finalURL)")
         
         URLSession.shared.dataTask(with: finalURL) { data, response, error in
             if let error = error {
@@ -57,6 +59,7 @@ class NetworkingController {
     
     static func fetchSprite(for url: String, completion: @escaping (Result<UIImage, NetworkError>) -> Void) {
         guard let finalURL = URL(string: url) else { completion(.failure(.invalidURL)) ; return }
+        print("fetchSprite Final URL: \(finalURL)")
         
         URLSession.shared.dataTask(with: finalURL) { data, response, error in
             if let error = error {
